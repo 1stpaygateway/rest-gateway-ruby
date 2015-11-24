@@ -28,7 +28,8 @@ class ServiceClient
 		@result.clear
 		@responsecode = 0
 		@status = "None"
-		wsresponse = HTTParty.post(apiRequest, body: @data)
+		header = {'Content-Type' => 'application/json', 'charset' => 'utf-8'}
+		wsresponse = HTTParty.post(apiRequest, body: @data.to_json, headers: header)
 		@responsecode = wsresponse.code
 		response = JSON.parse(wsresponse.body)
 		if (response.has_key? "isError" and response["isError"]==true)
@@ -316,6 +317,22 @@ class ServiceClient
 	
 	def queryVaultForShippingRecords(params={}, callBackSuccess=nil, callBackFailure=nil)
 		request = @apiUrl + "VaultQueryShippingRecord"
+		@data = @data.merge(params)
+		self.performRequest(request, callBackSuccess, callBackFailure)
+	end
+	
+	#####################
+	##  Token Methods  ##
+	#####################
+
+	def generateTokenForTransaction(params={}, callBackSuccess=nil, callBackFailure=nil)
+		request = @apiUrl + "GenerateTokenForTransaction"
+		@data = @data.merge(params)
+		self.performRequest(request, callBackSuccess, callBackFailure)
+	end
+
+	def generateTokenFromCreditCard(params={}, callBackSuccess=nil, callBackFailure=nil)
+		request = @apiUrl + "GenerateTokenFromCreditCard"
 		@data = @data.merge(params)
 		self.performRequest(request, callBackSuccess, callBackFailure)
 	end
