@@ -322,20 +322,15 @@ class ServiceClient
 	end
 	
 	#####################
-	##  Token Methods  ##
+	##  Misc Methods  ##
 	#####################
 
-	def generateTokenForTransaction(params={}, callBackSuccess=nil, callBackFailure=nil)
-		request = @apiUrl + "GenerateTokenForTransaction"
+	def modifyRecurring(params={}, callBackSuccess=nil, callBackFailure=nil)
+		request = @apiUrl + "RecurringModify"
 		@data = @data.merge(params)
 		self.performRequest(request, callBackSuccess, callBackFailure)
 	end
 
-	def generateTokenFromCreditCard(params={}, callBackSuccess=nil, callBackFailure=nil)
-		request = @apiUrl + "GenerateTokenFromCreditCard"
-		@data = @data.merge(params)
-		self.performRequest(request, callBackSuccess, callBackFailure)
-	end
 	
 end
 end
