@@ -346,6 +346,12 @@ class ServiceClient
 		@data = @data.merge(params)
 		self.performRequest(request, callBackSuccess, callBackFailure)
 	end
+	
+	def generateTokenFromCreditCard(params={}, callBackSuccess=nil, callBackFailure=nil)
+		request = @apiUrl + "GenerateTokenFromCreditCard"
+		@data = @data.merge(params)
+		self.performRequest(request, callBackSuccess, callBackFailure)
+	end
 
 end
 end
