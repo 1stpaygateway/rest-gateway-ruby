@@ -112,6 +112,12 @@ class ServiceClient
 		@data = @data.merge(params)
 		self.performRequest(request, callBackSuccess, callBackFailure)
 	end
+	
+	def creditCardChargebackQuery(params={}, callBackSuccess=nil, callBackFailure=nil)
+		request = @apiUrl + "CreditCardChargebackQuery"
+		@data = @data.merge(params)
+		self.performRequest(request, callBackSuccess, callBackFailure)
+	end
 
 	def createSale(params={}, callBackSuccess=nil, callBackFailure=nil)
 		request = @apiUrl + "Sale"
